@@ -1,0 +1,31 @@
+name: Feature proposal
+description: Propose a scoped improvement consistent with the roadmap
+title: "proposal: "
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: Please read the roadmap and discuss large platform, protocol, routing, or security changes before implementation.
+  - type: textarea
+    attributes:
+      label: Problem
+      description: What user or operator problem should be solved?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Proposed behavior
+      description: Describe observable behavior, boundaries, and failure handling.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Alternatives and tradeoffs
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: Roadmap horizon
+      options: [Now / 0.1.x, Next / 0.2, Later, Not currently listed]
+    validations:
+      required: true

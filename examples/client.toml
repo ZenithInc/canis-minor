@@ -1,0 +1,14 @@
+server_addr = "192.0.2.1:5260"
+psk_file = "/etc/canis-minor/psk"
+proxy_port = 15260
+fwmark = 13259360
+bypass_mark = 13259361
+route_table = 5260
+rule_priority = 10526
+nft_table = "canis_minor"
+handshake_timeout_secs = 10
+heartbeat_secs = 5
+udp_idle_secs = 60
+reconnect_min_secs = 1
+reconnect_max_secs = 30
+max_streams = 256

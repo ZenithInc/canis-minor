@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zenithinc.github.io/canis-minor/sitemap-index.xml

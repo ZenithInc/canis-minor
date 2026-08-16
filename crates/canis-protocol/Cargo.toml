@@ -1,0 +1,28 @@
+[package]
+name = "canis-protocol"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+documentation.workspace = true
+description = "Encrypted multiplexed transport protocol used by Canis Minor"
+keywords = ["proxy", "tunnel", "networking", "noise", "yamux"]
+publish = false
+
+[dependencies]
+anyhow.workspace = true
+bytes.workspace = true
+futures.workspace = true
+serde.workspace = true
+snow.workspace = true
+thiserror.workspace = true
+tokio.workspace = true
+tokio-util.workspace = true
+toml.workspace = true
+yamux.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true

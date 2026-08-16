@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions and support
+    url: https://github.com/ZenithInc/canis-minor/discussions
+    about: Ask deployment, configuration, and design questions in Discussions.
+  - name: Private vulnerability report
+    url: https://github.com/ZenithInc/canis-minor/security/advisories/new
+    about: Report undisclosed security vulnerabilities privately.

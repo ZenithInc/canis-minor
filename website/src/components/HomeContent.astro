@@ -1,0 +1,235 @@
+---
+interface Props {
+  lang: 'en' | 'zh-cn';
+}
+
+const { lang } = Astro.props;
+const zh = lang === 'zh-cn';
+const base = '/canis-minor';
+const localeBase = zh ? `${base}/zh-cn` : base;
+const copy = zh
+  ? {
+      signal: '加密信号，清晰边界',
+      intro:
+        'Canis Minor 将 Linux 主机进程的 IPv4 TCP/UDP 流量安全地送到自管服务端，同时保留 TLS 端到端语义，并在隧道失效时恢复直连。',
+      features: '核心特性',
+      featureItems: [
+        ['透明转发', 'Linux nftables TPROXY 截获主机 output 路径，无需逐应用配置。'],
+        ['加密复用', 'Noise NNpsk0 保护一条 TCP 隧道，Yamux 承载并发 TCP 与 UDP 会话。'],
+        ['故障可恢复', '断线时移除自有规则、恢复直连，并以有上限的退避自动重连。'],
+        ['可验证制品', '静态 PIE 归档附带 SHA-256 校验和和 GitHub 构建来源证明。'],
+      ],
+      flow: '数据流',
+      flowLabels: ['主机进程', 'TPROXY', '客户端', 'Noise + Yamux', '服务端', '目标'],
+      flowNote: 'DNS：隧道内 TCP/UDP 53 → 配置的服务端上游',
+      platforms: '平台支持',
+      supportRows: [
+        ['Ubuntu 24.04 · x86_64 · IPv4', '当前支持', '0.1.x'],
+        ['macOS 13+ · 通用二进制', '下一阶段', '0.2'],
+        ['Linux ARM64 · IPv6', '后续', 'Later'],
+        ['Windows', '不计划', '中短期'],
+      ],
+      platform: '平台',
+      status: '状态',
+      horizon: '阶段',
+      quick: '快速开始',
+      quickText: '使用你自己的服务端 IPv4 地址初始化；项目没有隐藏的默认基础设施。',
+      roadmap: '路线图摘要',
+      roadmapItems: [
+        ['Now · 0.1.x', 'Linux 稳定性、可复现 Release、运维与安全文档、真实 TPROXY 回归。'],
+        ['Next · 0.2', 'Swift 宿主 + Network Extension 的 macOS 客户端、macOS 服务端及通用二进制。'],
+        ['Later', 'Linux ARM64、IPv6、多客户端身份与密钥轮换、指标与诊断。'],
+      ],
+      readDocs: '阅读安装文档',
+      github: '查看 GitHub',
+    }
+  : {
+      signal: 'Encrypted signal, explicit boundaries',
+      intro:
+        'Canis Minor carries host-originated IPv4 TCP and UDP traffic to a server you operate, preserves end-to-end TLS semantics, and restores direct connectivity when the tunnel fails.',
+      features: 'Core features',
+      featureItems: [
+        ['Transparent forwarding', 'Linux nftables TPROXY covers the host output path without per-application setup.'],
+        ['Encrypted multiplexing', 'Noise NNpsk0 protects one TCP tunnel while Yamux carries concurrent TCP and UDP sessions.'],
+        ['Recoverable failure', 'Owned rules are removed on disconnect, direct routing returns, and bounded reconnection begins.'],
+        ['Verifiable artifacts', 'Static PIE archives ship with SHA-256 checksums and GitHub build provenance.'],
+      ],
+      flow: 'Data flow',
+      flowLabels: ['Host process', 'TPROXY', 'Client', 'Noise + Yamux', 'Server', 'Destination'],
+      flowNote: 'DNS: tunneled TCP/UDP port 53 → configured server upstream',
+      platforms: 'Platform support',
+      supportRows: [
+        ['Ubuntu 24.04 · x86_64 · IPv4', 'Supported', '0.1.x'],
+        ['macOS 13+ · universal binary', 'Next', '0.2'],
+        ['Linux ARM64 · IPv6', 'Planned', 'Later'],
+        ['Windows', 'Not planned', 'Medium term'],
+      ],
+      platform: 'Platform',
+      status: 'Status',
+      horizon: 'Horizon',
+      quick: 'Quick start',
+      quickText: 'Initialize with your own server IPv4 address; the project has no hidden infrastructure default.',
+      roadmap: 'Roadmap at a glance',
+      roadmapItems: [
+        ['Now · 0.1.x', 'Linux stability, reproducible releases, operations and security docs, and real TPROXY regression.'],
+        ['Next · 0.2', 'A Swift host plus Network Extension macOS client, macOS server, and universal binaries.'],
+        ['Later', 'Linux ARM64, IPv6, multiple client identities and rotation, metrics, and diagnostics.'],
+      ],
+      readDocs: 'Read installation docs',
+      github: 'View on GitHub',
+    };
+---
+
+<div class="home not-content">
+  <section class="signal" aria-labelledby="signal-title">
+    <div class="signal-copy">
+      <p class="eyebrow">TCP · UDP · Noise · Yamux</p>
+      <h2 id="signal-title">{copy.signal}</h2>
+      <p>{copy.intro}</p>
+    </div>
+    <svg class="constellation" viewBox="0 0 520 260" role="img" aria-labelledby="constellation-title constellation-desc">
+      <title id="constellation-title">Canis Minor</title>
+      <desc id="constellation-desc">A stylized constellation connected by an encrypted tunnel path.</desc>
+      <defs>
+        <linearGradient id="line" x1="0" x2="1">
+          <stop stop-color="#70d6ff" />
+          <stop offset="1" stop-color="#a78bfa" />
+        </linearGradient>
+        <radialGradient id="star">
+          <stop stop-color="#fff" />
+          <stop offset="0.35" stop-color="#fff4bf" />
+          <stop offset="1" stop-color="#70d6ff" stop-opacity="0" />
+        </radialGradient>
+      </defs>
+      <g class="orbit" fill="none" stroke="currentColor" opacity="0.16">
+        <ellipse cx="260" cy="130" rx="220" ry="92" />
+        <ellipse cx="260" cy="130" rx="165" ry="62" />
+      </g>
+      <path class="star-line" d="M72 188 155 74l96 60 78-87 115 112" />
+      <path class="pulse-line" d="M72 188 155 74l96 60 78-87 115 112" />
+      <g fill="url(#star)">
+        <circle cx="72" cy="188" r="18" />
+        <circle cx="155" cy="74" r="24" />
+        <circle cx="251" cy="134" r="17" />
+        <circle cx="329" cy="47" r="28" />
+        <circle cx="444" cy="159" r="21" />
+      </g>
+      <g fill="#fff8d6">
+        <circle cx="72" cy="188" r="3.5" />
+        <circle cx="155" cy="74" r="5" />
+        <circle cx="251" cy="134" r="3" />
+        <circle cx="329" cy="47" r="6" />
+        <circle cx="444" cy="159" r="4" />
+      </g>
+    </svg>
+  </section>
+
+  <section aria-labelledby="features-title">
+    <h2 id="features-title">{copy.features}</h2>
+    <div class="feature-grid">
+      {copy.featureItems.map(([title, description], index) => (
+        <article class="feature-card">
+          <span aria-hidden="true">0{index + 1}</span>
+          <h3>{title}</h3>
+          <p>{description}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section aria-labelledby="flow-title">
+    <h2 id="flow-title">{copy.flow}</h2>
+    <ol class="flow">
+      {copy.flowLabels.map((label, index) => (
+        <li>
+          <span class="flow-node">{label}</span>
+          {index < copy.flowLabels.length - 1 && <span class="flow-arrow" aria-hidden="true">→</span>}
+        </li>
+      ))}
+    </ol>
+    <p class="flow-note">{copy.flowNote}</p>
+  </section>
+
+  <section aria-labelledby="platforms-title">
+    <h2 id="platforms-title">{copy.platforms}</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>{copy.platform}</th><th>{copy.status}</th><th>{copy.horizon}</th></tr></thead>
+        <tbody>
+          {copy.supportRows.map((row) => <tr>{row.map((cell) => <td>{cell}</td>)}</tr>)}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="quick" aria-labelledby="quick-title">
+    <div>
+      <h2 id="quick-title">{copy.quick}</h2>
+      <p>{copy.quickText}</p>
+    </div>
+    <pre aria-label={zh ? '快速开始命令' : 'Quick start commands'}><code>git clone https://github.com/ZenithInc/canis-minor.git
+cd canis-minor
+bash scripts/init.sh --server-address 192.0.2.1:5260
+bash scripts/build-server.sh
+bash scripts/build-static.sh</code></pre>
+  </section>
+
+  <section aria-labelledby="roadmap-title">
+    <h2 id="roadmap-title">{copy.roadmap}</h2>
+    <div class="roadmap-grid">
+      {copy.roadmapItems.map(([title, description]) => (
+        <article><h3>{title}</h3><p>{description}</p></article>
+      ))}
+    </div>
+  </section>
+
+  <nav class="end-actions" aria-label={zh ? '下一步' : 'Next steps'}>
+    <a class="primary" href={`${localeBase}/getting-started/`}>{copy.readDocs}<span aria-hidden="true">→</span></a>
+    <a href="https://github.com/ZenithInc/canis-minor">{copy.github}<span aria-hidden="true">↗</span></a>
+  </nav>
+</div>
+
+<style>
+  .home { display: grid; gap: clamp(4rem, 8vw, 7rem); padding-block: 1rem 4rem; }
+  .home section { scroll-margin-top: 6rem; }
+  .home h2 { margin: 0 0 1.5rem; font-size: clamp(1.7rem, 3vw, 2.45rem); letter-spacing: -0.035em; }
+  .home h3 { margin: 0; font-size: 1.05rem; }
+  .home p { color: var(--sl-color-gray-2); line-height: 1.75; }
+  .signal { position: relative; display: grid; grid-template-columns: minmax(0, .9fr) minmax(18rem, 1.1fr); align-items: center; min-height: 24rem; padding: clamp(1.5rem, 4vw, 3.5rem); overflow: hidden; border: 1px solid color-mix(in srgb, var(--sl-color-accent) 28%, transparent); border-radius: 1.5rem; background: linear-gradient(145deg, rgba(10, 31, 57, .92), rgba(12, 18, 42, .78)); box-shadow: 0 2rem 6rem rgba(0, 0, 0, .24); }
+  .signal::before { content: ''; position: absolute; inset: 0; opacity: .45; background-image: radial-gradient(circle, #dff7ff 0 1px, transparent 1.5px); background-size: 43px 43px; mask-image: linear-gradient(120deg, black, transparent 72%); }
+  .signal-copy, .constellation { position: relative; z-index: 1; }
+  .eyebrow { margin: 0 0 .65rem !important; color: #70d6ff !important; font: 700 .72rem/1 var(--sl-font-mono); letter-spacing: .16em; text-transform: uppercase; }
+  .signal h2 { max-width: 13ch; margin-bottom: 1rem; color: #f7fbff; font-size: clamp(2rem, 4vw, 3.35rem); }
+  .signal p:not(.eyebrow) { max-width: 37rem; color: #bac9dc; }
+  .constellation { width: 100%; color: #70d6ff; }
+  .star-line, .pulse-line { fill: none; stroke: url(#line); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .pulse-line { stroke-width: 8; opacity: .12; }
+  .feature-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+  .feature-card { min-height: 13rem; padding: 1.35rem; border: 1px solid var(--sl-color-gray-5); border-radius: 1rem; background: color-mix(in srgb, var(--sl-color-gray-6) 62%, transparent); }
+  .feature-card > span { display: block; margin-bottom: 2.2rem; color: var(--sl-color-accent-high); font: 600 .72rem/1 var(--sl-font-mono); letter-spacing: .12em; }
+  .feature-card p { margin: .7rem 0 0; font-size: .9rem; }
+  .flow { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; }
+  .flow li { display: flex; align-items: center; min-width: 0; }
+  .flow-node { display: grid; min-height: 4.5rem; flex: 1; place-items: center; padding: .6rem; border: 1px solid color-mix(in srgb, var(--sl-color-accent) 45%, var(--sl-color-gray-5)); border-radius: .75rem; background: var(--sl-color-gray-6); text-align: center; font: 600 .78rem/1.3 var(--sl-font-mono); }
+  .flow-arrow { padding: 0 .3rem; color: var(--sl-color-accent); }
+  .flow-note { margin: 1rem 0 0; text-align: center; font-size: .86rem; }
+  .table-wrap { overflow-x: auto; border: 1px solid var(--sl-color-gray-5); border-radius: 1rem; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { padding: 1rem 1.15rem; border-bottom: 1px solid var(--sl-color-gray-5); text-align: left; }
+  th { color: var(--sl-color-gray-2); font: 600 .72rem/1 var(--sl-font-mono); letter-spacing: .08em; text-transform: uppercase; }
+  tr:last-child td { border-bottom: 0; }
+  .quick { display: grid; grid-template-columns: .75fr 1.25fr; gap: 2rem; align-items: center; padding: clamp(1.4rem, 4vw, 3rem); border: 1px solid var(--sl-color-gray-5); border-radius: 1.25rem; background: linear-gradient(135deg, color-mix(in srgb, var(--sl-color-accent-low) 55%, transparent), color-mix(in srgb, var(--sl-color-gray-6) 75%, transparent)); }
+  .quick h2 { margin-bottom: .6rem; }
+  .quick p { margin: 0; }
+  .quick pre { margin: 0; padding: 1.25rem; overflow-x: auto; border: 1px solid rgba(255,255,255,.1); border-radius: .8rem; background: #050b14; color: #d8f5ff; font-size: .76rem; line-height: 1.7; }
+  .roadmap-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+  .roadmap-grid article { padding: 1.3rem; border-left: 2px solid var(--sl-color-accent); background: linear-gradient(90deg, color-mix(in srgb, var(--sl-color-accent-low) 35%, transparent), transparent); }
+  .roadmap-grid p { margin: .6rem 0 0; font-size: .9rem; }
+  .end-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .8rem; }
+  .end-actions a { display: inline-flex; align-items: center; gap: .55rem; padding: .78rem 1.1rem; border: 1px solid var(--sl-color-gray-4); border-radius: 999px; color: var(--sl-color-white); text-decoration: none; font-weight: 650; }
+  .end-actions a:hover { border-color: var(--sl-color-accent); }
+  .end-actions .primary { border-color: var(--sl-color-accent); background: var(--sl-color-accent); color: var(--sl-color-black); }
+  @media (max-width: 64rem) { .feature-grid { grid-template-columns: repeat(2, 1fr); } .flow { grid-template-columns: repeat(3, 1fr); gap: .65rem; } .flow-arrow { display: none; } }
+  @media (max-width: 42rem) { .signal, .quick { grid-template-columns: 1fr; } .constellation { order: -1; } .feature-grid, .roadmap-grid { grid-template-columns: 1fr; } .flow { grid-template-columns: repeat(2, 1fr); } }
+  @media (prefers-reduced-motion: reduce) { .pulse-line { display: none; } }
+</style>

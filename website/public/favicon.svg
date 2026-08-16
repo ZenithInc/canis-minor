@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Canis Minor constellation</title>
+  <defs>
+    <radialGradient id="sky" cx="35%" cy="25%">
+      <stop offset="0" stop-color="#173a67" />
+      <stop offset="1" stop-color="#07101f" />
+    </radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#sky)" />
+  <path d="M14 45 27 24l14 9 10-17" fill="none" stroke="#70d6ff" stroke-width="2" stroke-linecap="round" />
+  <g fill="#fff4bf">
+    <circle cx="14" cy="45" r="3" />
+    <circle cx="27" cy="24" r="4" />
+    <circle cx="41" cy="33" r="3" />
+    <circle cx="51" cy="16" r="5" />
+  </g>
+</svg>

@@ -1,0 +1,32 @@
+{
+  "name": "canis-minor-website",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.22.0",
+  "engines": {
+    "node": ">=24 <25",
+    "pnpm": ">=11 <12"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check:links": "node scripts/check-links.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "3.7.3",
+    "@astrojs/starlight": "0.41.7",
+    "astro": "7.2.2",
+    "sharp": "0.35.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "prettier": "3.9.6",
+    "prettier-plugin-astro": "0.14.1",
+    "typescript": "6.0.3"
+  }
+}

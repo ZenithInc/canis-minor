@@ -1,0 +1,46 @@
+[workspace]
+members = [
+    "crates/canis-client",
+    "crates/canis-protocol",
+    "crates/canis-server",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "MIT OR Apache-2.0"
+rust-version = "1.85"
+authors = ["ZenithInc"]
+repository = "https://github.com/ZenithInc/canis-minor"
+homepage = "https://zenithinc.github.io/canis-minor/"
+documentation = "https://zenithinc.github.io/canis-minor/"
+
+[workspace.dependencies]
+anyhow = "1.0.100"
+bytes = "1.10.1"
+clap = { version = "4.5.54", features = ["derive"] }
+futures = "0.3.31"
+libc = "0.2.180"
+serde = { version = "1.0.228", features = ["derive"] }
+snow = { version = "0.10.0", default-features = false, features = [
+    "default-resolver",
+    "use-blake2",
+    "use-chacha20poly1305",
+    "use-curve25519",
+    "use-getrandom",
+] }
+socket2 = { version = "0.6.1", features = ["all"] }
+tempfile = "3.24.0"
+thiserror = "2.0.17"
+tokio = { version = "1.49.0", features = ["full"] }
+tokio-util = { version = "0.7.18", features = ["codec", "compat", "io", "rt"] }
+toml = "0.9.8"
+tracing = "0.1.44"
+tracing-subscriber = { version = "0.3.22", features = ["env-filter", "fmt"] }
+yamux = "0.14.0"
+
+[profile.release]
+codegen-units = 1
+lto = "thin"
+strip = true

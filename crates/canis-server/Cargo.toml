@@ -1,0 +1,28 @@
+[package]
+name = "canis-server"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+documentation.workspace = true
+description = "Outbound relay server for the Canis Minor transparent proxy tunnel"
+keywords = ["proxy", "tunnel", "networking", "noise", "relay"]
+publish = false
+
+[dependencies]
+anyhow.workspace = true
+canis-protocol = { path = "../canis-protocol" }
+clap.workspace = true
+futures.workspace = true
+socket2.workspace = true
+tokio.workspace = true
+tokio-util.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+yamux.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true

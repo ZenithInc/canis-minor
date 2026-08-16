@@ -1,0 +1,9 @@
+/target/
+/dist/
+/.canis/
+/server.txt
+/website/node_modules/
+/website/dist/
+/website/.astro/
+/.cargo/
+*.log

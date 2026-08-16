@@ -1,0 +1,34 @@
+[Unit]
+Description=Canis Minor transparent tunnel client
+Wants=network-online.target
+After=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+ExecStartPre=/usr/local/bin/canis-client cleanup --config /etc/canis-minor/client.toml
+ExecStart=/usr/local/bin/canis-client run --config /etc/canis-minor/client.toml
+ExecStopPost=/usr/local/bin/canis-client cleanup --config /etc/canis-minor/client.toml
+Restart=always
+RestartSec=3s
+TimeoutStopSec=20s
+KillMode=control-group
+User=root
+Group=root
+UMask=0077
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_RAW
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_RAW
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_INET AF_NETLINK AF_UNIX
+LockPersonality=true
+MemoryDenyWriteExecute=true
+
+[Install]
+WantedBy=multi-user.target

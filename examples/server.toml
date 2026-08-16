@@ -1,0 +1,8 @@
+listen = "0.0.0.0:5260"
+psk_file = ".canis/psk"
+dns_upstream = "1.1.1.1:53"
+handshake_timeout_secs = 10
+connect_timeout_secs = 10
+udp_idle_secs = 60
+heartbeat_secs = 5
+max_streams = 256

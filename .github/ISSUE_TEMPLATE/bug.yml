@@ -1,0 +1,52 @@
+name: Bug report
+description: Report reproducible incorrect behavior in a supported environment
+title: "bug: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Remove PSKs, SSH targets, host keys, usernames, and real infrastructure addresses. Security vulnerabilities must use private reporting instead.
+  - type: checkboxes
+    attributes:
+      label: Preflight
+      options:
+        - label: I searched existing issues and Discussions.
+          required: true
+        - label: This is not an undisclosed security vulnerability.
+          required: true
+        - label: I removed secrets and identifying infrastructure details.
+          required: true
+  - type: input
+    attributes:
+      label: Canis Minor version
+      placeholder: v0.1.0 or commit SHA
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: Component
+      options: [Client, Server, Protocol, Deployment scripts, Website or docs]
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Environment
+      description: OS release, CPU architecture, kernel, nftables/iproute2 versions, and relevant topology.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Reproduction
+      description: Minimal numbered steps using documentation addresses where possible.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Expected and observed behavior
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Redacted logs
+      render: text

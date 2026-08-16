@@ -1,0 +1,60 @@
+---
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+---
+
+<StarlightPage
+  frontmatter={{
+    title: "Page not found · 页面未找到",
+    description: "The requested Canis Minor documentation page does not exist.",
+  }}
+>
+  <div class="missing">
+    <p class="code">404 · LOST SIGNAL</p>
+    <h1>Page not found</h1>
+    <p>
+      The requested route is outside this constellation. Return to the English
+      documentation or switch to 简体中文.
+    </p>
+    <nav aria-label="404 navigation">
+      <a href="/canis-minor/">English home</a>
+      <a href="/canis-minor/zh-cn/">中文首页</a>
+    </nav>
+  </div>
+</StarlightPage>
+
+<style>
+  .missing {
+    max-width: 42rem;
+    margin: 12vh auto;
+    padding: 2rem;
+    text-align: center;
+  }
+  .code {
+    color: var(--sl-color-accent-high);
+    font: 700 0.75rem/1 var(--sl-font-mono);
+    letter-spacing: 0.16em;
+  }
+  h1 {
+    margin: 1rem 0;
+    font-size: clamp(2.4rem, 7vw, 5rem);
+    letter-spacing: -0.05em;
+  }
+  .missing > p:last-of-type {
+    color: var(--sl-color-gray-2);
+    line-height: 1.7;
+  }
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+  a {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--sl-color-accent);
+    border-radius: 999px;
+    color: var(--sl-color-white);
+    text-decoration: none;
+  }
+</style>

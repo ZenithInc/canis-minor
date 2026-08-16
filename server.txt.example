@@ -1,0 +1,2 @@
+# Replace this documentation address with the SSH target for your client host.
+ssh -p 22222 root@192.0.2.10
